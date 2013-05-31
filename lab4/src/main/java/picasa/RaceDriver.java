@@ -7,6 +7,9 @@ import com.google.gdata.client.photos.*;
 import com.google.gdata.data.photos.*;
 import com.google.gdata.util.ServiceException;
 import java.io.IOException;
+import javax.persistence.*;
+import picasa.Avatar;
+import picasa.AvatarControl;
 
 public class RaceDriver implements IRaceDriverService {
 
