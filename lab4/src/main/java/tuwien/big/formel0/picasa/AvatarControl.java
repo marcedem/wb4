@@ -1,4 +1,4 @@
-package picasa;
+package tuwien.big.formel0.picasa;
 
 import java.util.ArrayList;
 import java.util.List;

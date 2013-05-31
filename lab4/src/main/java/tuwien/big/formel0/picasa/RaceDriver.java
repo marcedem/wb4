@@ -1,4 +1,4 @@
-package picasa;
+package tuwien.big.formel0.picasa;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import com.google.gdata.data.photos.*;
 import com.google.gdata.util.ServiceException;
 import java.io.IOException;
 import javax.persistence.*;
-import picasa.Avatar;
-import picasa.AvatarControl;
+import tuwien.big.formel0.picasa.Avatar;
+import tuwien.big.formel0.picasa.AvatarControl;
 
 public class RaceDriver implements IRaceDriverService {
 

@@ -1,4 +1,4 @@
-package picasa;
+package tuwien.big.formel0.picasa;
 
 import com.google.gdata.data.photos.PhotoFeed;
 import javax.faces.bean.NoneScoped;
