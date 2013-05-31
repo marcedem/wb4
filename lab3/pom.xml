@@ -42,6 +42,18 @@
             <version>2.2</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-core</artifactId>
+            <version>3.0.3</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gdata.gdata-java-client</groupId>
+            <artifactId>gdata-photos-2.0</artifactId>
+            <version>1.47.1</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

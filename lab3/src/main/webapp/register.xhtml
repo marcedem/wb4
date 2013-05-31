@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <body>
         <ui:composition template="/WEB-INF/templates/template.xhtml">
             <ui:define name="navigation">
@@ -40,6 +41,17 @@
                                 <f:selectItem itemValue="w" itemLabel="#{msg.female}"/>
                                 <f:selectItem itemValue="m" itemLabel="#{msg.male}"/>
                             </h:selectOneMenu>
+                            
+                            <c:if test="#{rc.isEmptyAc() == false}">
+                             <h:outputLabel class="registerform" for="avatar" value="#{msg.avatar}"/>
+                            <h:selectOneMenu id="avatar" value="#{rc.newplayer.avatardesc}">
+                                <f:selectItems value="#{rc.avatarList}" var="a" itemLabel="#{a.description}" itemValue="#{a.description}" />
+                                </h:selectOneMenu>
+   										</c:if>
+                             
+                            
+                            
+                            
                         </fieldset>
 
                         <h3>#{msg.logindatahead}</h3>

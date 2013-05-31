@@ -2,6 +2,8 @@ package tuwien.big.formel0.entities;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.NoneScoped;
+import picasa.Avatar;
+import picasa.AvatarControl;
 
 @ManagedBean(name = "player")
 @NoneScoped
@@ -13,7 +15,10 @@ public class Player {
     private String password = null;
     private String birthday = null;
     private String sex = null;
-
+    private Avatar newavatar = null;
+    
+    
+    
     /**
      * Creates a new instance of Player
      */
@@ -103,4 +108,37 @@ public class Player {
     public void setSex(String sex) {
         this.sex = sex;
     }
+    
+    
+    public void setNewavatar(Avatar newavatar) {
+		this.newavatar = newavatar;
+	}
+
+	public Avatar getNewavatar() {
+		return this.newavatar;
+	}
+
+	public void setAvatardesc(String avatar) {
+		setNewavatar(AvatarControl.getAvatar(avatar));
+	}
+
+	public String getAvatardesc() {
+		if (this.newavatar != null) {
+			return this.newavatar.getDescription();
+		}
+		return "kein Avatar";
+	}
+
+	public Avatar getAvatar() {
+		return this.newavatar;
+	}
+
+	public void setAvatarurl(String url) {
+		this.newavatar.setUrl(url);
+	}
+
+	public String getAvatarurl() {
+		return this.newavatar.getUrl();
+	}
+    
 }
