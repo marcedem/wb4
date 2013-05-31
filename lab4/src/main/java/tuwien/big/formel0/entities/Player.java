@@ -1,21 +1,31 @@
 package tuwien.big.formel0.entities;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.NoneScoped;
+import javax.persistence.*;
 import picasa.Avatar;
 import picasa.AvatarControl;
 
 @ManagedBean(name = "player")
 @NoneScoped
-public class Player {
+@Entity
+public class Player implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
+    
     private String firstname = null;
+    
     private String lastname = null;
     private String name = null;
     private String password = null;
     private String birthday = null;
     private String sex = null;
-    private Avatar newavatar = null;
+    
+    //private String newavatar;
     
     
     
@@ -110,11 +120,11 @@ public class Player {
     }
     
     
-    public void setNewavatar(Avatar newavatar) {
+   /** public void setNewavatar(String newavatar) {
 		this.newavatar = newavatar;
 	}
 
-	public Avatar getNewavatar() {
+	public String getNewavatar() {
 		return this.newavatar;
 	}
 
@@ -129,7 +139,7 @@ public class Player {
 		return "kein Avatar";
 	}
 
-	public Avatar getAvatar() {
+	public String getAvatar() {
 		return this.newavatar;
 	}
 
@@ -138,7 +148,7 @@ public class Player {
 	}
 
 	public String getAvatarurl() {
-		return this.newavatar.getUrl();
+		return this.avatar.getUrl();
 	}
-    
+    **/
 }
