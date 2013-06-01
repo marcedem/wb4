@@ -4,29 +4,21 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.NoneScoped;
 import javax.persistence.*;
+import tuwien.big.formel0.controller.RaceDriverControl;
+import tuwien.big.formel0.picasa.RaceDriver;
 
 @ManagedBean(name = "player")
 @NoneScoped
-@Entity
-public class Player implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    
+public class Player {
     
     private String firstname = null;
-    
     private String lastname = null;
     private String name = null;
     private String password = null;
     private String birthday = null;
     private String sex = null;
-    
-    //private String newavatar;
-    
-    
-    
+    private RaceDriver racedriver = null;
+
     /**
      * Creates a new instance of Player
      */
@@ -116,37 +108,45 @@ public class Player implements Serializable {
     public void setSex(String sex) {
         this.sex = sex;
     }
+
+    /**
+     * @return the racedriver
+     */
+    public RaceDriver getRaceDriver() {
+        return racedriver;
+    }
+
+    /**
+     * @param racedriver the racedriver to set
+     */
+    public void setRaceDriver(RaceDriver racedriver) {
+        this.racedriver = racedriver;
+    }
     
+    public void setRaceDriverName(String name) {
+        setRaceDriver(RaceDriverControl.getRaceDriver(name));
+    }
     
-   /** public void setNewavatar(String newavatar) {
-		this.newavatar = newavatar;
-	}
-
-	public String getNewavatar() {
-		return this.newavatar;
-	}
-
-	public void setAvatardesc(String avatar) {
-		setNewavatar(AvatarControl.getAvatar(avatar));
-	}
-
-	public String getAvatardesc() {
-		if (this.newavatar != null) {
-			return this.newavatar.getDescription();
-		}
-		return "kein Avatar";
-	}
-
-	public String getAvatar() {
-		return this.newavatar;
-	}
-
-	public void setAvatarurl(String url) {
-		this.newavatar.setUrl(url);
-	}
-
-	public String getAvatarurl() {
-		return this.avatar.getUrl();
-	}
-    **/
+    public String getRaceDriverName() {
+        if (this.racedriver != null) {
+            return this.racedriver.getName();
+        }
+        return "kein Rennfahrer!";
+    }
+    
+    public String getRaceDriverWiki() {
+        return this.racedriver.getWikiUrl();
+    }
+    
+    public void setRaceDriverWiki(String wiki) {
+        this.racedriver.setWikiUrl(wiki);
+    }
+    
+    public void setRaceDriverUrl(String url) {
+        this.racedriver.setUrl(url);
+    }
+    
+    public String getRaceDriverUrl() {
+        return this.racedriver.getUrl();
+    }
 }

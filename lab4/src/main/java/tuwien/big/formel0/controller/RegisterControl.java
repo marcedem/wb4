@@ -14,6 +14,7 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
 import tuwien.big.formel0.entities.Player;
 import tuwien.big.formel0.entities.RegisteredPlayerPool;
+import tuwien.big.formel0.picasa.RaceDriver;
 
 /**
  *
@@ -30,6 +31,7 @@ public class RegisterControl {
     private RegisteredPlayerPool rpp;
     @ManagedProperty(value = "#{false}")
     private boolean registrationsuccessful;
+    private RaceDriver[] driverlist;
 
     /**
      * Creates a new instance of RegisterControl
@@ -129,5 +131,21 @@ public class RegisterControl {
      */
     public void setRegistrationsuccessful(boolean registrationsuccessful) {
         this.registrationsuccessful = registrationsuccessful;
+    }
+
+    public boolean isEmptyRdc() {
+        return RaceDriverControl.isEmpty();
+    }
+
+    public RaceDriver[] getRaceDriverList() {
+        RaceDriverControl.updateRaceDriverList();
+        int i = 0;
+        driverlist = new RaceDriver[RaceDriverControl.getRaceDriverList().size()];
+        for (RaceDriver driver : RaceDriverControl.getRaceDriverList()) {
+            driverlist[i] = driver;
+            i++;
+        }
+        return driverlist;
+
     }
 }

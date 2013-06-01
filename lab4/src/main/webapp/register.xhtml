@@ -42,7 +42,14 @@
                                 <f:selectItem itemValue="m" itemLabel="#{msg.male}"/>
                             </h:selectOneMenu>
 
-
+                            <div>
+                                <c:if test="#{rc.isEmptyRdc() == false}">
+                                    <h:outputLabel class="registerform" for="racedriver" value="#{msg.racedriver}"/>
+                                    <h:selectOneMenu id="racedriver" label="#{msg.racedriver}" value="#{rc.newplayer.raceDriverName}" tabindex="6">
+                                        <f:selectItems value="#{rc.raceDriverList}" var="a" itemLabel="#{a.name}" itemValue="#{a.name}" />
+                                    </h:selectOneMenu>
+                                </c:if>
+                            </div>
 
 
 
