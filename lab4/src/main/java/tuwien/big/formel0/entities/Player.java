@@ -4,8 +4,6 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.NoneScoped;
 import javax.persistence.*;
-import tuwien.big.formel0.picasa.Avatar;
-import tuwien.big.formel0.picasa.AvatarControl;
 
 @ManagedBean(name = "player")
 @NoneScoped
