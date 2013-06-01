@@ -35,7 +35,7 @@ public class RaceDriverLoader implements IRaceDriverService {
                 List<String> tagList = tags.getKeywords();
                 for (int i = 0; i < tagList.size(); i++) {
                     if (tagList.get(i).contains("wiki:")) {
-                        wikiUrl = tagList.get(i);
+                        wikiUrl = tagList.get(i).substring(5);
                         break;
                     }
                 }
