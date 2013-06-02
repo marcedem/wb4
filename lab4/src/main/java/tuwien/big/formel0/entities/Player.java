@@ -7,9 +7,10 @@ import javax.persistence.*;
 import tuwien.big.formel0.controller.RaceDriverControl;
 import tuwien.big.formel0.picasa.RaceDriver;
 
+@Entity
 @ManagedBean(name = "player")
 @NoneScoped
-public class Player {
+public class Player implements Serializable{
     
     private String firstname = null;
     private String lastname = null;
@@ -18,13 +19,26 @@ public class Player {
     private String birthday = null;
     private String sex = null;
     private RaceDriver racedriver = null;
+   
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int playerId;
+    
 
     /**
      * Creates a new instance of Player
      */
     public Player() {
     }
-
+    
+    
+    public void setPlayerId(int playerId){
+        this.playerId = playerId;
+    }
+    
+     public int getPlayerId(){
+        return playerId;
+    }
     /**
      * @return the name
      */
