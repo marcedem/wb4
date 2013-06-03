@@ -23,7 +23,7 @@ public class HighscoreControl {
         highscoreService = new PublishHighScoreService();
     }
 
-    public String postHighscore(formel0api.Game currentGame) {
+    public String postHighscore() {
         System.out.println("POSTING HIGH SCORE!");
         
         ObjectFactory factory = new ObjectFactory();

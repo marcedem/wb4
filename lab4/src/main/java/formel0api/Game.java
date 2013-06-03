@@ -118,12 +118,12 @@ public class Game {
             
         }
 
-        if (this.gameOver) {
+       /* if (this.gameOver) {
             highscore = new HighscoreControl();
             String response = "";
-            response = highscore.postHighscore(this);
+            response = highscore.postHighscore();
             System.out.println("HIGHSCORE SERVICE RESPONSE: " + response);
-        }
+        }*/
         
         return score;
     }
