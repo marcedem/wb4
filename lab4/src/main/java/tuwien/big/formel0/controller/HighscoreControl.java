@@ -6,6 +6,8 @@ import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.xml.datatype.XMLGregorianCalendar;
 import tuwien.big.formel0.entities.Player;
 import tuwien.big.formel0.entities.RegisteredPlayerPool;
@@ -16,23 +18,27 @@ import tuwien.big.formel0.highscore.*;
  * @author alex
  */
 @ManagedBean(name = "hs")
-@ApplicationScoped
+@SessionScoped
 public class HighscoreControl {
 
+    FacesContext context = FacesContext.getCurrentInstance();
+    RegisteredPlayerPool rpp;
+    
+    
     private PublishHighScoreService highscoreService;
     
-    @ManagedProperty(value = "#{rpp}")
-    private RegisteredPlayerPool rpp;
+    
 
     public HighscoreControl() {
+        this.rpp = (RegisteredPlayerPool) context.getApplication().evaluateExpressionGet(context, "#{rpp}", RegisteredPlayerPool.class);
         highscoreService = new PublishHighScoreService();
     }
 
     public String postHighscore(formel0api.Game currentGame) {
+        //rpp.getClass();
         
-        
-        System.out.println("POSTING HIGH SCORE! " + this.getRpp().getRegplayers().size());
-        System.out.println("Player name test: " + this.getRpp().getRegplayers().get(0).getName());
+        //System.out.println("POSTING HIGH SCORE! " + this.getRpp().getRegplayers().size());
+       // System.out.println("Player name test: " + this.getRpp().getRegplayers().get(0).getName());
 
         ObjectFactory factory = new ObjectFactory();
 
@@ -45,7 +51,7 @@ public class HighscoreControl {
         String playerGender = "";
         
         
-        long duration = currentGame.getSpentTime();
+        long duration = currentGame.getSpentTime()/1000;
         String winner = currentGame.getLeader().getName();
         
         try {
@@ -54,7 +60,11 @@ public class HighscoreControl {
             Player playerEntity = getRpp().getRegplayers().get(i);
             if (this.getRpp().getRegplayers().get(i).getName().equals(currentGame.getPlayer().getName())) {
                 birthdayString = playerEntity.getBirthday();
-                playerGender = playerEntity.getSex();
+                if (playerEntity.getSex().equals("m")) {
+                    playerGender = "MALE";
+                } else {
+                    playerGender = "FEMALE";
+                }
             }
         }
         } catch (Exception e) {
@@ -69,8 +79,8 @@ public class HighscoreControl {
             request.setUserKey("34EphAp2C4ebaswu");
             
             System.out.println("BIRTHDAY TEST: " + birthdayString);
-            String birthdaySplit[] = birthdayString.split(".");
-            
+            String[] birthdaySplit = birthdayString.split("\\.");
+            System.out.println("SPLIT TEST SIZE " + birthdaySplit.length);
             
             
             

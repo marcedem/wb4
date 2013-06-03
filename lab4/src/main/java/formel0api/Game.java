@@ -10,7 +10,14 @@
  */
 package formel0api;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tuwien.big.formel0.controller.HighscoreControl;
+import tuwien.big.formel0.twitter.TwitterClientImpl;
+import tuwien.big.formel0.twitter.TwitterStatusMessage;
 
 /**
  * Class representing a Formel 0 game
@@ -44,16 +51,18 @@ public class Game {
      * Time already spent in this game
      */
     private long spenttime;
-
-    
     private HighscoreControl highscore;
-    
+    private TwitterClientImpl twitter;
+    private TwitterStatusMessage message;
+
     /**
      * Constructs a new {@link Game}
      */
     public Game(Player player, Player computer) {
         this.player = player;
         this.computer = computer;
+        highscore = new HighscoreControl();
+        twitter = new TwitterClientImpl();
     }
 
     /**
@@ -114,21 +123,31 @@ public class Game {
          */
         if (newposition == LAST_FIELD) { // player reached end
             gameOver = true;
+
             
-            highscore = new HighscoreControl();
             String response = "";
             response = highscore.postHighscore(this);
             System.out.println("HIGHSCORE SERVICE RESPONSE: " + response);
             
+            Date today = new Date();
+            
+            message = new TwitterStatusMessage(player.getName(), response, today);
+            
+            try {
+                twitter.publishUuid(message);
+            } catch (Exception ex) {
+                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
-       /* if (this.gameOver) {
-            highscore = new HighscoreControl();
-            String response = "";
-            response = highscore.postHighscore();
-            System.out.println("HIGHSCORE SERVICE RESPONSE: " + response);
-        }*/
-        
+        /* if (this.gameOver) {
+         highscore = new HighscoreControl();
+         String response = "";
+         response = highscore.postHighscore();
+         System.out.println("HIGHSCORE SERVICE RESPONSE: " + response);
+         }*/
+
         return score;
     }
 
