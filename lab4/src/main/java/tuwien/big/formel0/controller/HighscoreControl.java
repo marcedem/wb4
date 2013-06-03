@@ -1,6 +1,8 @@
 package tuwien.big.formel0.controller;
 
 import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
+import javax.faces.bean.ApplicationScoped;
+import javax.faces.bean.ManagedBean;
 import javax.xml.datatype.XMLGregorianCalendar;
 import tuwien.big.formel0.highscore.*;
 
@@ -8,6 +10,8 @@ import tuwien.big.formel0.highscore.*;
  *
  * @author alex
  */
+@ManagedBean(name = "hs")
+@ApplicationScoped
 public class HighscoreControl {
 
     private PublishHighScoreService highscoreService;
@@ -17,6 +21,8 @@ public class HighscoreControl {
     }
 
     public String postHighscore() {
+        System.out.println("POSTING HIGH SCORE!");
+        
         ObjectFactory factory = new ObjectFactory();
 
         HighScoreRequestType request = factory.createHighScoreRequestType();
@@ -31,7 +37,9 @@ public class HighscoreControl {
         tournament.setStartDate(date);
         tournament.setEndDate(date);
         tournament.setRegistrationDeadline(datetime);
-
+        
+        
+        
         String response = "";
 
         try {

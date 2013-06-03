@@ -10,6 +10,8 @@
  */
 package formel0api;
 
+import tuwien.big.formel0.controller.HighscoreControl;
+
 /**
  * Class representing a Formel 0 game
  */
@@ -109,6 +111,9 @@ public class Game {
          */
         if (newposition == LAST_FIELD) { // player reached end
             gameOver = true;
+            HighscoreControl highscore = new HighscoreControl();
+            highscore.postHighscore();
+            
         }
 
         return score;
