@@ -124,19 +124,20 @@ public class Game {
         if (newposition == LAST_FIELD) { // player reached end
             gameOver = true;
 
-            
+
             String response = "";
             response = highscore.postHighscore(this);
             System.out.println("HIGHSCORE SERVICE RESPONSE: " + response);
-            
+
             Date today = new Date();
-            
+
             message = new TwitterStatusMessage(player.getName(), response, today);
-            
+
             try {
                 twitter.publishUuid(message);
             } catch (Exception ex) {
-                Logger.getLogger(Game.class.getName()).log(Level.SEVERE, null, ex);
+                System.err.println(ex);
+                ex.printStackTrace();
             }
 
         }
