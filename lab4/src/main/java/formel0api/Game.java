@@ -45,6 +45,9 @@ public class Game {
      */
     private long spenttime;
 
+    
+    private HighscoreControl highscore;
+    
     /**
      * Constructs a new {@link Game}
      */
@@ -111,11 +114,17 @@ public class Game {
          */
         if (newposition == LAST_FIELD) { // player reached end
             gameOver = true;
-            HighscoreControl highscore = new HighscoreControl();
-            highscore.postHighscore();
+            
             
         }
 
+        if (this.gameOver) {
+            highscore = new HighscoreControl();
+            String response = "";
+            response = highscore.postHighscore(this);
+            System.out.println("HIGHSCORE SERVICE RESPONSE: " + response);
+        }
+        
         return score;
     }
 

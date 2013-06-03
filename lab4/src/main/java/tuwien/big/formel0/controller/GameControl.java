@@ -108,7 +108,7 @@ public class GameControl {
         }
         ++round;
         
-       System.out.println("isGameOver: "+isGameOver());
+       //System.out.println("isGameOver: "+isGameOver());
 
         if (isGameOver()) {
                    System.out.println("Game is over, setting highScoreService");

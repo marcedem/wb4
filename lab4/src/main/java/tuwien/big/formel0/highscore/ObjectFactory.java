@@ -40,11 +40,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FailureType }
+     * Create an instance of {@link GameType.GameHistory }
      * 
      */
-    public FailureType createFailureType() {
-        return new FailureType();
+    public GameType.GameHistory createGameTypeGameHistory() {
+        return new GameType.GameHistory();
+    }
+
+    /**
+     * Create an instance of {@link GameType.Players.Player }
+     * 
+     */
+    public GameType.Players.Player createGameTypePlayersPlayer() {
+        return new GameType.Players.Player();
+    }
+
+    /**
+     * Create an instance of {@link TournamentType.Players.Player }
+     * 
+     */
+    public TournamentType.Players.Player createTournamentTypePlayersPlayer() {
+        return new TournamentType.Players.Player();
+    }
+
+    /**
+     * Create an instance of {@link DescriptionType }
+     * 
+     */
+    public DescriptionType createDescriptionType() {
+        return new DescriptionType();
+    }
+
+    /**
+     * Create an instance of {@link GameType }
+     * 
+     */
+    public GameType createGameType() {
+        return new GameType();
     }
 
     /**
@@ -56,11 +88,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GameType.Players }
+     * Create an instance of {@link HighScoreRequestType }
      * 
      */
-    public GameType.Players createGameTypePlayers() {
-        return new GameType.Players();
+    public HighScoreRequestType createHighScoreRequestType() {
+        return new HighScoreRequestType();
+    }
+
+    /**
+     * Create an instance of {@link TournamentType.Rounds.Round }
+     * 
+     */
+    public TournamentType.Rounds.Round createTournamentTypeRoundsRound() {
+        return new TournamentType.Rounds.Round();
+    }
+
+    /**
+     * Create an instance of {@link TournamentType.Rounds }
+     * 
+     */
+    public TournamentType.Rounds createTournamentTypeRounds() {
+        return new TournamentType.Rounds();
     }
 
     /**
@@ -80,67 +128,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DescriptionType }
+     * Create an instance of {@link FailureType }
      * 
      */
-    public DescriptionType createDescriptionType() {
-        return new DescriptionType();
+    public FailureType createFailureType() {
+        return new FailureType();
     }
 
     /**
-     * Create an instance of {@link TournamentType.Rounds }
+     * Create an instance of {@link GameType.Players }
      * 
      */
-    public TournamentType.Rounds createTournamentTypeRounds() {
-        return new TournamentType.Rounds();
-    }
-
-    /**
-     * Create an instance of {@link TournamentType.Rounds.Round }
-     * 
-     */
-    public TournamentType.Rounds.Round createTournamentTypeRoundsRound() {
-        return new TournamentType.Rounds.Round();
-    }
-
-    /**
-     * Create an instance of {@link GameType }
-     * 
-     */
-    public GameType createGameType() {
-        return new GameType();
-    }
-
-    /**
-     * Create an instance of {@link TournamentType.Players.Player }
-     * 
-     */
-    public TournamentType.Players.Player createTournamentTypePlayersPlayer() {
-        return new TournamentType.Players.Player();
-    }
-
-    /**
-     * Create an instance of {@link GameType.GameHistory }
-     * 
-     */
-    public GameType.GameHistory createGameTypeGameHistory() {
-        return new GameType.GameHistory();
-    }
-
-    /**
-     * Create an instance of {@link GameType.Players.Player }
-     * 
-     */
-    public GameType.Players.Player createGameTypePlayersPlayer() {
-        return new GameType.Players.Player();
-    }
-
-    /**
-     * Create an instance of {@link HighScoreRequestType }
-     * 
-     */
-    public HighScoreRequestType createHighScoreRequestType() {
-        return new HighScoreRequestType();
+    public GameType.Players createGameTypePlayers() {
+        return new GameType.Players();
     }
 
     /**
