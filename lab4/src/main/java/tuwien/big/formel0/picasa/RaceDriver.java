@@ -14,7 +14,8 @@ import javax.persistence.*;
  */
 
 @Entity
-@ManagedBean(name = "avatar")
+@ManagedBean(name = "entity")
+@Table(name="Avatar")
 @NoneScoped
 
 public class RaceDriver implements Serializable {

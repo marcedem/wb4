@@ -8,7 +8,8 @@ import tuwien.big.formel0.controller.RaceDriverControl;
 import tuwien.big.formel0.picasa.RaceDriver;
 
 @Entity
-@ManagedBean(name = "player")
+@ManagedBean(name = "entity")
+@Table(name="Player")
 @NoneScoped
 public class Player implements Serializable{
     

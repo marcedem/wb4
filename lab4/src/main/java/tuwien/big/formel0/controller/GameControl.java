@@ -1,10 +1,25 @@
 package tuwien.big.formel0.controller;
 
+import com.sun.org.apache.xerces.internal.jaxp.datatype.XMLGregorianCalendarImpl;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import formel0api.Game;
 import formel0api.Player;
+import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.faces.bean.ManagedProperty;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+import tuwien.big.formel0.entities.RegisteredPlayerPool;
+import tuwien.big.formel0.highscore.Failure;
+import tuwien.big.formel0.highscore.HighScoreRequestType;
+import tuwien.big.formel0.highscore.HighScoreService;
+import tuwien.big.formel0.highscore.ObjectFactory;
+import tuwien.big.formel0.highscore.PublishHighScoreService;
+import tuwien.big.formel0.highscore.TournamentType;
 
 @ManagedBean(name = "gc")
 @SessionScoped
@@ -12,11 +27,19 @@ public class GameControl {
 
     Player player;
     Player computer;
+    
+    
     Game game;
     int playerscore = 0;
     int computerscore = 0;
     int round = 1;
     String playername;
+       
+    
+    @ManagedProperty(value="#{highScoreService}")
+    private HighScoreService highScoreService;
+    
+   
 
     public GameControl() {
         this("Susi");
@@ -92,6 +115,23 @@ public class GameControl {
             this.computerscore = 0;
         }
         ++round;
+        
+       System.out.println("isGameOver: "+isGameOver());
+
+        if (isGameOver()) {
+                   System.out.println("Game is over, setting highScoreService");
+
+//            highScoreService=new HighScoreService();
+       
+            highScoreService.setGame(game);
+            
+            System.out.println("Calling Highscoreservice");
+            String uuid=highScoreService.callHighscore();
+            
+            System.out.println("UUID:"+uuid);
+            
+            
+        }
     }
     
     /**
@@ -138,4 +178,14 @@ public class GameControl {
     public Player getPlayer2() {
         return this.computer;
     }
+
+    public void setHighScoreService(HighScoreService highScoreService) {
+        this.highScoreService = highScoreService;
+    }
+
+    public HighScoreService getHighScoreService() {
+        return highScoreService;
+    }
+
+    
 }
