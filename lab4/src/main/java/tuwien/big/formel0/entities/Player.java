@@ -1,18 +1,27 @@
 package tuwien.big.formel0.entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.NoneScoped;
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import tuwien.big.formel0.controller.RaceDriverControl;
+import tuwien.big.formel0.persistence.ConFormel0;
 import tuwien.big.formel0.picasa.RaceDriver;
 
 @Entity
 @ManagedBean(name = "player")
 @Table(name="Player")
 @NoneScoped
+
 public class Player implements Serializable{
     
+//    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("org.hibernate.ejb.HibernatePersistence");
+//    private  EntityManager entityManager = emf.createEntityManager();
+//    
     private String firstname = null;
     private String lastname = null;
     private String name = null;
@@ -22,19 +31,23 @@ public class Player implements Serializable{
     private RaceDriver racedriver = null;
    
     @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int playerId;
     
-
+    //Player p = new Player();
+    //ConFormel0 con = new ConFormel0();
+    
     /**
      * Creates a new instance of Player
      */
     public Player() {
     }
     
+   //con.create(p);
     
     public void setPlayerId(int playerId){
         this.playerId = playerId;
+      //  entityManager.persist(playerId);
     }
     
      public int getPlayerId(){
@@ -66,6 +79,7 @@ public class Player implements Serializable{
      */
     public void setPassword(String password) {
         this.password = password;
+      //  entityManager.persist(password);
     }
 
     /**
@@ -80,6 +94,7 @@ public class Player implements Serializable{
      */
     public void setFirstname(String firstname) {
         this.firstname = firstname;
+     //   entityManager.persist(firstname);
     }
 
     /**
@@ -87,6 +102,7 @@ public class Player implements Serializable{
      */
     public String getLastname() {
         return lastname;
+        
     }
 
     /**
@@ -94,6 +110,7 @@ public class Player implements Serializable{
      */
     public void setLastname(String lastname) {
         this.lastname = lastname;
+       // entityManager.persist(lastname);
     }
 
     /**
@@ -108,6 +125,7 @@ public class Player implements Serializable{
      */
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+       // entityManager.persist(birthday);
     }
 
     /**
@@ -122,6 +140,7 @@ public class Player implements Serializable{
      */
     public void setSex(String sex) {
         this.sex = sex;
+       // entityManager.persist(sex);
     }
 
     /**
