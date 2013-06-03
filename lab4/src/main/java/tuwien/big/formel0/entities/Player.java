@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import tuwien.big.formel0.controller.RaceDriverControl;
-import tuwien.big.formel0.persistence.ConFormel0;
+//import tuwien.big.formel0.persistence.ConFormel0;
 import tuwien.big.formel0.picasa.RaceDriver;
 
 @Entity
@@ -19,7 +19,8 @@ import tuwien.big.formel0.picasa.RaceDriver;
 
 public class Player implements Serializable{
     
-//    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("org.hibernate.ejb.HibernatePersistence");
+    
+ //   private EntityManagerFactory emf = Persistence.createEntityManagerFactory("org.hibernate.ejb.HibernatePersistence");
 //    private  EntityManager entityManager = emf.createEntityManager();
 //    
     private String firstname = null;
@@ -42,8 +43,6 @@ public class Player implements Serializable{
      */
     public Player() {
     }
-    
-   //con.create(p);
     
     public void setPlayerId(int playerId){
         this.playerId = playerId;
