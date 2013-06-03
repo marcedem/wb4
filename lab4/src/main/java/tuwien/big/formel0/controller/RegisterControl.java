@@ -36,8 +36,8 @@ public class RegisterControl {
     private RaceDriver[] driverlist;
 
     
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("java:comp/env/jdbc/lab4");
-     EntityManager em = emf.createEntityManager();
+    //EntityManagerFactory emf = Persistence.createEntityManagerFactory("java:comp/env/jdbc/lab4");
+     //EntityManager em = emf.createEntityManager();
     
     
     /**
@@ -99,7 +99,7 @@ public class RegisterControl {
    //em.getTransaction().begin();
     public void setNewplayer(Player newplayer) {
         this.newplayer = newplayer;
-        em.persist(newplayer);
+       // em.persist(newplayer);
     }
 
     /**
