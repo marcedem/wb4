@@ -115,6 +115,10 @@ public class Game {
         if (newposition == LAST_FIELD) { // player reached end
             gameOver = true;
             
+            highscore = new HighscoreControl();
+            String response = "";
+            response = highscore.postHighscore();
+            System.out.println("HIGHSCORE SERVICE RESPONSE: " + response);
             
         }
 

@@ -25,57 +25,77 @@ public class HighscoreControl {
 
     public String postHighscore() {
         System.out.println("POSTING HIGH SCORE!");
-        
+
+
         ObjectFactory factory = new ObjectFactory();
 
         HighScoreRequestType request = factory.createHighScoreRequestType();
-        request.setUserKey("34EphAp2C4ebaswu");
-        
-        XMLGregorianCalendar datetime = XMLGregorianCalendarImpl.createDateTime(2013, 6, 3, 0, 0, 0);
-        XMLGregorianCalendar date = XMLGregorianCalendarImpl.createDate(2013, 6, 3, 0);
-        XMLGregorianCalendar birthday = XMLGregorianCalendarImpl.createDate(1990, 1, 1, 0);
-        
-        TournamentType tournament = factory.createTournamentType();
-        
-        TournamentType.Players players = factory.createTournamentTypePlayers();
-        TournamentType.Players.Player person = null;
-        
-        TournamentType.Rounds rounds = factory.createTournamentTypeRounds();
-        TournamentType.Rounds.Round round = null;
-        
-        GameType game = factory.createGameType();
-        
-        game.setDate(date);
-        game.setStatus("finished");
-        game.setDuration(BigInteger.valueOf(23));
-        game.setWinner("test");
-        
-        GameType.Players gamePlayers = null;
-        gamePlayers.getPlayer().add(factory.createGameTypePlayersPlayer());
-        game.setPlayers(gamePlayers);
-        
-        round.setNumber(0);
-        round.getGame().add(game);
-        
-        person.setUsername("test");
-        person.setGender("MALE");
-        person.setDateOfBirth(birthday);
-        
-        players.getPlayer().add(person);
-        
-        
-        tournament.setStartDate(date);
-        tournament.setEndDate(date);
-        tournament.setRegistrationDeadline(datetime);
-        tournament.setPlayers(players);
-        tournament.setRounds(rounds);
-      
-        request.setTournament(tournament);
-                
+
+
+        try {
+
+            request.setUserKey("34EphAp2C4ebaswu");
+
+            XMLGregorianCalendar datetime = XMLGregorianCalendarImpl.createDateTime(2013, 6, 3, 0, 0, 0);
+            XMLGregorianCalendar date = XMLGregorianCalendarImpl.createDate(2013, 6, 3, 0);
+            XMLGregorianCalendar birthday = XMLGregorianCalendarImpl.createDate(1990, 1, 1, 0);
+
+            TournamentType tournament = factory.createTournamentType();
+
+            TournamentType.Players players = factory.createTournamentTypePlayers();
+            TournamentType.Players.Player person = factory.createTournamentTypePlayersPlayer();
+
+            TournamentType.Rounds rounds = factory.createTournamentTypeRounds();
+            TournamentType.Rounds.Round round = factory.createTournamentTypeRoundsRound();
+
+            GameType game = factory.createGameType();
+
+            game.setDate(date);
+            game.setStatus("finished");
+            game.setDuration(BigInteger.valueOf(23));
+            game.setWinner("test");
+
+            GameType.Players gamePlayers = factory.createGameTypePlayers();
+            GameType.GameHistory history = factory.createGameTypeGameHistory();
+            GameType.Players.Player gamePlayer = factory.createGameTypePlayersPlayer();
+            gamePlayer.setRef("test");
+            
+            gamePlayers.getPlayer().add(gamePlayer);
+           
+            game.setPlayers(gamePlayers);
+           // game.setGameHistory(history);
+            
+            
+
+            round.setNumber(0);
+            round.getGame().add(game);
+            
+            rounds.getRound().add(round);
+
+            person.setUsername("test");
+            person.setGender("MALE");
+            person.setDateOfBirth(birthday);
+
+            players.getPlayer().add(person);
+
+
+            tournament.setStartDate(date);
+            tournament.setEndDate(date);
+            tournament.setRegistrationDeadline(datetime);
+            tournament.setPlayers(players);
+            tournament.setRounds(rounds);
+
+            request.setTournament(tournament);
+        } catch (Exception e) {
+            System.err.println(e);
+            e.printStackTrace();
+        }
+
+
         String response = "";
 
         System.out.println("HIGHSCORE POST SUCCESS NUMBER ONE!");
-        
+
         try {
             response = highscoreService.getPublishHighScorePort().publishHighScore(request);
             System.out.println("HIGHSCORE POST SUCCESS!");
