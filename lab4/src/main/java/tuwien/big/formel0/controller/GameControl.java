@@ -12,12 +12,6 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import tuwien.big.formel0.entities.RegisteredPlayerPool;
-import tuwien.big.formel0.highscore.Failure;
-import tuwien.big.formel0.highscore.HighScoreRequestType;
-import tuwien.big.formel0.highscore.HighScoreService;
-import tuwien.big.formel0.highscore.ObjectFactory;
-import tuwien.big.formel0.highscore.PublishHighScoreService;
-import tuwien.big.formel0.highscore.TournamentType;
 
 @ManagedBean(name = "gc")
 @SessionScoped
@@ -34,8 +28,8 @@ public class GameControl {
     String playername;
        
     
-    @ManagedProperty(value="#{highScoreService}")
-    private HighScoreService highScoreService;
+   // @ManagedProperty(value="#{highScoreService}")
+   // private HighScoreService highScoreService;
     
    
 
@@ -121,12 +115,12 @@ public class GameControl {
 
 //            highScoreService=new HighScoreService();
        
-            highScoreService.setGame(game);
+           // highScoreService.setGame(game);
             
             System.out.println("Calling Highscoreservice");
-            String uuid=highScoreService.callHighscore();
+       //     String uuid=highScoreService.callHighscore();
             
-            System.out.println("UUID:"+uuid);
+           // System.out.println("UUID:"+uuid);
             
             
         }
@@ -176,7 +170,7 @@ public class GameControl {
     public Player getPlayer2() {
         return this.computer;
     }
-
+/*
     public void setHighScoreService(HighScoreService highScoreService) {
         this.highScoreService = highScoreService;
     }
@@ -185,5 +179,5 @@ public class GameControl {
         return highScoreService;
     }
 
-    
+    */
 }

@@ -1,0 +1,22 @@
+<data:HighScoreRequest xsi:schemaLocation="http://big.tuwien.ac.at/we/highscore/data wehighscore-
+datatypes.xsd" xmlns:data="http://big.tuwien.ac.at/we/highscore/data"
+xmlns:ssd="http://www.dbai.tuwien.ac.at/education/ssd/SS13/uebung/Tournament"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<data:UserKey>34EphAp2C4ebaswu</data:UserKey>
+<ssd:tournament start-date="2012-04-23" end-date="2012-04-23" registration-deadline="2013-04-23T00:00:00Z">
+	<ssd:players>
+		<ssd:player username="Max Mustermann">
+			<ssd:date-of-birth>1965-08-13</ssd:date-of-birth>
+			<ssd:gender>MALE</ssd:gender>
+		</ssd:player>
+	</ssd:players>
+	<ssd:rounds>
+		<ssd:round number="0">
+			<ssd:game date="2012-04-23" status="finished" duration="23" winner="The computer">
+				<ssd:players/>
+			</ssd:game>
+		</ssd:round>
+	</ssd:rounds>
+</ssd:tournament>
+</data:HighScoreRequest>
+

@@ -96,7 +96,7 @@ public class RegisterControl {
     /**
      * @param newplayer the newplayer to set
      */
-    em.getTransaction().begin();
+   //em.getTransaction().begin();
     public void setNewplayer(Player newplayer) {
         this.newplayer = newplayer;
         em.persist(newplayer);
@@ -160,7 +160,7 @@ public class RegisterControl {
 
     }
     
-    em.getTransaction().commit();
+    //em.getTransaction().commit();
 
-    em.close();
+    //em.close();
 }
