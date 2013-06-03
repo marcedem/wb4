@@ -21,7 +21,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.1
  * 
  */
-@WebServiceClient(name = "PublishHighScoreService", targetNamespace = "http://big.tuwien.ac.at/we/highscore", wsdlLocation = "file:/home/alex/PublishHighScoreService.wsdl")
+@WebServiceClient(name = "PublishHighScoreService", targetNamespace = "http://big.tuwien.ac.at/we/highscore", wsdlLocation = "http://playground.big.tuwien.ac.at:8080/highscore/PublishHighScoreService?wsdl")
 public class PublishHighScoreService
     extends Service
 {
@@ -34,9 +34,9 @@ public class PublishHighScoreService
         try {
             URL baseUrl;
             baseUrl = tuwien.big.formel0.highscore.PublishHighScoreService.class.getResource(".");
-            url = new URL(baseUrl, "file:/home/alex/PublishHighScoreService.wsdl");
+            url = new URL(baseUrl, "http://playground.big.tuwien.ac.at:8080/highscore/PublishHighScoreService?wsdl");
         } catch (MalformedURLException e) {
-            logger.warning("Failed to create URL for the wsdl Location: 'file:/home/alex/PublishHighScoreService.wsdl', retrying as a local file");
+            logger.warning("Failed to create URL for the wsdl Location: 'http://playground.big.tuwien.ac.at:8080/highscore/PublishHighScoreService?wsdl', retrying as a local file");
             logger.warning(e.getMessage());
         }
         PUBLISHHIGHSCORESERVICE_WSDL_LOCATION = url;
