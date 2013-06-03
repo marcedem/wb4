@@ -1,5 +1,5 @@
 
-package at.ac.tuwien.big.we.highscore;
+package tuwien.big.formel0.highscore;
 
 import javax.xml.ws.WebFault;
 
@@ -45,7 +45,7 @@ public class Failure
     /**
      * 
      * @return
-     *     returns fault bean: at.ac.tuwien.big.we.highscore.FailureType
+     *     returns fault bean: tuwien.big.formel0.highscore.FailureType
      */
     public FailureType getFaultInfo() {
         return faultInfo;

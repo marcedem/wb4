@@ -1,5 +1,5 @@
 
-package at.ac.tuwien.big.we.highscore;
+package tuwien.big.formel0.highscore;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -27,13 +27,13 @@ public class PublishHighScoreService
 {
 
     private final static URL PUBLISHHIGHSCORESERVICE_WSDL_LOCATION;
-    private final static Logger logger = Logger.getLogger(at.ac.tuwien.big.we.highscore.PublishHighScoreService.class.getName());
+    private final static Logger logger = Logger.getLogger(tuwien.big.formel0.highscore.PublishHighScoreService.class.getName());
 
     static {
         URL url = null;
         try {
             URL baseUrl;
-            baseUrl = at.ac.tuwien.big.we.highscore.PublishHighScoreService.class.getResource(".");
+            baseUrl = tuwien.big.formel0.highscore.PublishHighScoreService.class.getResource(".");
             url = new URL(baseUrl, "http://playground.big.tuwien.ac.at:8080/highscore/PublishHighScoreService?wsdl");
         } catch (MalformedURLException e) {
             logger.warning("Failed to create URL for the wsdl Location: 'http://playground.big.tuwien.ac.at:8080/highscore/PublishHighScoreService?wsdl', retrying as a local file");

@@ -1,5 +1,5 @@
 
-package at.ac.tuwien.dbai.education.ssd.ss13.uebung.tournament;
+package tuwien.big.formel0.highscore;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -65,8 +65,8 @@ public class DescriptionType {
      * <p>
      * Objects of the following type(s) are allowed in the list
      * {@link String }
-     * {@link JAXBElement }{@code <}{@link DescriptionType }{@code >}
      * {@link JAXBElement }{@code <}{@link String }{@code >}
+     * {@link JAXBElement }{@code <}{@link DescriptionType }{@code >}
      * 
      * 
      */

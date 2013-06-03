@@ -1,11 +1,10 @@
 
-package at.ac.tuwien.big.we.highscore.data;
+package tuwien.big.formel0.highscore;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import at.ac.tuwien.dbai.education.ssd.ss13.uebung.tournament.TournamentType;
 
 
 /**
@@ -29,7 +28,7 @@ import at.ac.tuwien.dbai.education.ssd.ss13.uebung.tournament.TournamentType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "HighScoreRequestType", propOrder = {
+@XmlType(name = "HighScoreRequestType", namespace = "http://big.tuwien.ac.at/we/highscore/data", propOrder = {
     "userKey",
     "tournament"
 })

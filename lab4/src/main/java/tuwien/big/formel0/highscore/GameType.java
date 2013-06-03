@@ -1,5 +1,5 @@
 
-package at.ac.tuwien.dbai.education.ssd.ss13.uebung.tournament;
+package tuwien.big.formel0.highscore;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

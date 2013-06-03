@@ -1,5 +1,5 @@
 
-package at.ac.tuwien.big.we.highscore;
+package tuwien.big.formel0.highscore;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -29,18 +29,18 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "FailureType", propOrder = {
+@XmlType(name = "FailureType", namespace = "http://big.tuwien.ac.at/we/highscore", propOrder = {
     "code",
     "reason",
     "detail"
 })
 public class FailureType {
 
-    @XmlElement(name = "Code", required = true)
+    @XmlElement(name = "Code", namespace = "", required = true)
     protected String code;
-    @XmlElement(name = "Reason", required = true)
+    @XmlElement(name = "Reason", namespace = "", required = true)
     protected String reason;
-    @XmlElement(name = "Detail")
+    @XmlElement(name = "Detail", namespace = "")
     protected String detail;
 
     /**
