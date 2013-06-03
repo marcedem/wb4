@@ -22,7 +22,7 @@ public class Player implements Serializable{
     private RaceDriver racedriver = null;
    
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private int playerId;
     
 

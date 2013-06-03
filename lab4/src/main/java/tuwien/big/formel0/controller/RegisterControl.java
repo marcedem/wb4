@@ -15,6 +15,8 @@ import javax.faces.validator.ValidatorException;
 import tuwien.big.formel0.entities.Player;
 import tuwien.big.formel0.entities.RegisteredPlayerPool;
 import tuwien.big.formel0.picasa.RaceDriver;
+import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  *
@@ -33,6 +35,11 @@ public class RegisterControl {
     private boolean registrationsuccessful;
     private RaceDriver[] driverlist;
 
+    
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("java:comp/env/jdbc/lab4");
+     EntityManager em = emf.createEntityManager();
+    
+    
     /**
      * Creates a new instance of RegisterControl
      */
@@ -83,12 +90,16 @@ public class RegisterControl {
     public Player getNewplayer() {
         return newplayer;
     }
-
+    
+    
+    
     /**
      * @param newplayer the newplayer to set
      */
+    em.getTransaction().begin();
     public void setNewplayer(Player newplayer) {
         this.newplayer = newplayer;
+        em.persist(newplayer);
     }
 
     /**
@@ -148,4 +159,8 @@ public class RegisterControl {
         return driverlist;
 
     }
+    
+    em.getTransaction().commit();
+
+    em.close();
 }

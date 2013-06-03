@@ -7,8 +7,6 @@ import formel0api.Game;
 import formel0api.Player;
 import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedProperty;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
