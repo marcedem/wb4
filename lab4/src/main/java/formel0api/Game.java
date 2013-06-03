@@ -117,7 +117,7 @@ public class Game {
             
             highscore = new HighscoreControl();
             String response = "";
-            response = highscore.postHighscore();
+            response = highscore.postHighscore(this);
             System.out.println("HIGHSCORE SERVICE RESPONSE: " + response);
             
         }

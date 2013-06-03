@@ -5,8 +5,10 @@ import java.math.BigInteger;
 import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.xml.datatype.XMLGregorianCalendar;
 import tuwien.big.formel0.entities.Player;
+import tuwien.big.formel0.entities.RegisteredPlayerPool;
 import tuwien.big.formel0.highscore.*;
 
 /**
@@ -18,74 +20,123 @@ import tuwien.big.formel0.highscore.*;
 public class HighscoreControl {
 
     private PublishHighScoreService highscoreService;
+    
+    @ManagedProperty(value = "#{rpp}")
+    private RegisteredPlayerPool rpp;
 
     public HighscoreControl() {
         highscoreService = new PublishHighScoreService();
     }
 
-    public String postHighscore() {
-        System.out.println("POSTING HIGH SCORE!");
-
+    public String postHighscore(formel0api.Game currentGame) {
+        
+        
+        System.out.println("POSTING HIGH SCORE! " + this.getRpp().getRegplayers().size());
+        System.out.println("Player name test: " + this.getRpp().getRegplayers().get(0).getName());
 
         ObjectFactory factory = new ObjectFactory();
 
         HighScoreRequestType request = factory.createHighScoreRequestType();
-
+        
+        
+        //Set name, birthday and gender
+        String playerName = currentGame.getPlayer().getName();
+        String birthdayString = "";
+        String playerGender = "";
+        
+        
+        long duration = currentGame.getSpentTime();
+        String winner = currentGame.getLeader().getName();
+        
+        try {
+        //for loop to set the player's birthday and gender
+        for (int i = 0; i < this.getRpp().getRegplayers().size(); i++) {
+            Player playerEntity = getRpp().getRegplayers().get(i);
+            if (this.getRpp().getRegplayers().get(i).getName().equals(currentGame.getPlayer().getName())) {
+                birthdayString = playerEntity.getBirthday();
+                playerGender = playerEntity.getSex();
+            }
+        }
+        } catch (Exception e) {
+            System.err.println(e);
+            e.printStackTrace();
+        }
+      
+        
 
         try {
 
             request.setUserKey("34EphAp2C4ebaswu");
-
+            
+            System.out.println("BIRTHDAY TEST: " + birthdayString);
+            String birthdaySplit[] = birthdayString.split(".");
+            
+            
+            
+            
+            int birthYear = Integer.valueOf(birthdaySplit[2]);
+            int birthMonth = Integer.valueOf(birthdaySplit[1]);
+            int birthDay = Integer.valueOf(birthdaySplit[0]);
+            
+            
             XMLGregorianCalendar datetime = XMLGregorianCalendarImpl.createDateTime(2013, 6, 3, 0, 0, 0);
             XMLGregorianCalendar date = XMLGregorianCalendarImpl.createDate(2013, 6, 3, 0);
-            XMLGregorianCalendar birthday = XMLGregorianCalendarImpl.createDate(1990, 1, 1, 0);
+            XMLGregorianCalendar birthday = XMLGregorianCalendarImpl.createDate(birthYear, birthMonth, birthDay, 0);
 
+            //Create TournamentType
             TournamentType tournament = factory.createTournamentType();
-
+            
+            //Create players in tournament
             TournamentType.Players players = factory.createTournamentTypePlayers();
             TournamentType.Players.Player person = factory.createTournamentTypePlayersPlayer();
 
+            //Create rounds in tournament
             TournamentType.Rounds rounds = factory.createTournamentTypeRounds();
             TournamentType.Rounds.Round round = factory.createTournamentTypeRoundsRound();
 
+            //Create GameType
             GameType game = factory.createGameType();
-
+            
+            //Create players in game
+            GameType.Players gamePlayers = factory.createGameTypePlayers();
+            GameType.Players.Player gamePlayer = factory.createGameTypePlayersPlayer();
+            gamePlayer.setRef(playerName);
+            gamePlayers.getPlayer().add(gamePlayer);
+            
+            //Set game attributes
             game.setDate(date);
             game.setStatus("finished");
-            game.setDuration(BigInteger.valueOf(23));
-            game.setWinner("test");
-
-            GameType.Players gamePlayers = factory.createGameTypePlayers();
-            GameType.GameHistory history = factory.createGameTypeGameHistory();
-            GameType.Players.Player gamePlayer = factory.createGameTypePlayersPlayer();
-            gamePlayer.setRef("test");
-            
-            gamePlayers.getPlayer().add(gamePlayer);
-           
+            game.setDuration(BigInteger.valueOf(duration));
+            game.setWinner(winner);
             game.setPlayers(gamePlayers);
-           // game.setGameHistory(history);
+                     
             
-            
-
+            //Set round attributes
             round.setNumber(0);
             round.getGame().add(game);
             
+            //Add round to rounds
             rounds.getRound().add(round);
 
-            person.setUsername("test");
-            person.setGender("MALE");
+            //Set person attributes
+            person.setUsername(playerName);
+            person.setGender(playerGender);
             person.setDateOfBirth(birthday);
 
+            //Add player (person) to players
             players.getPlayer().add(person);
 
-
+            //Set tournament attributes
             tournament.setStartDate(date);
             tournament.setEndDate(date);
             tournament.setRegistrationDeadline(datetime);
             tournament.setPlayers(players);
             tournament.setRounds(rounds);
 
+            //Set tournament in the HighScoreRequestType object
             request.setTournament(tournament);
+            
+            
         } catch (Exception e) {
             System.err.println(e);
             e.printStackTrace();
@@ -106,5 +157,19 @@ public class HighscoreControl {
         }
         return response;
 
+    }
+
+    /**
+     * @return the rpp
+     */
+    public RegisteredPlayerPool getRpp() {
+        return rpp;
+    }
+
+    /**
+     * @param rpp the rpp to set
+     */
+    public void setRpp(RegisteredPlayerPool rpp) {
+        this.rpp = rpp;
     }
 }
