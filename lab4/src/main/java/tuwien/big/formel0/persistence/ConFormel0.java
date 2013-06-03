@@ -1,21 +1,37 @@
 package tuwien.big.formel0.persistence;
 import java.sql.*;
 import tuwien.big.formel0.picasa.*;
+import javax.persistence.*;
+import tuwien.big.formel0.entities.Player;
 
 /**
  *
  * @author edem
  */
-public class ConFormel0 {
- 
-    public static void main(String[] a)
-            throws Exception {
-        Class.forName("org.h2.Driver");
-        Connection conn = DriverManager.
-            getConnection("jdbc:h2:mem:lab4", "lab4", "lab4");
-        // add application code here
-        conn.close();
+
+    public class ConFormel0 implements TableWriter{
+    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("lab4");
+   
+    EntityManager entityManager;
+     
+   // public ConFormel0(){}
+    
+    //@Override
+    public void create(Player p){
+        
+        entityManager = entityManagerFactory.createEntityManager();
+        
+        entityManager.getTransaction().begin();
+        entityManager.persist(p);
+
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        
+       // return p;
+        
     }
+
+
 }
     
 

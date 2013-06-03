@@ -24,6 +24,7 @@ public class RaceDriver implements Serializable {
     private String url;
     private String wikiUrl;
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int raceDriverId;
 
     public RaceDriver() {
